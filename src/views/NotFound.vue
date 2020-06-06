@@ -1,15 +1,12 @@
 <template>
     <div>
-        <Layout>
-            label
-            </Layout>
-
+        404
     </div>
 </template>
 
 <script lang="ts">
     export default {
-        name: "Labels",
+        name: "NotFound"
     }
 </script>
 

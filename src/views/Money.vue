@@ -1,6 +1,10 @@
 <template>
-    <div>money
-    <Nav /></div>
+    <div>
+        <Layout>
+            <p> money </p>
+        </Layout>
+
+    </div>
 </template>
 
 <script lang="ts">
