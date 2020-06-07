@@ -4,9 +4,6 @@
             <Types />
             <Notes />
            <Tags />
-
-
-
         </Layout>
 </template>
 
@@ -29,9 +26,4 @@
     }
 </style>
 <style lang="scss" scoped>
-
-
-
-
-
 </style>
