@@ -1,12 +1,9 @@
 <template>
         <Layout class-prefix="layout">
             <NumberPad />
-            <Types />
+            <Types :xxx="123"/>
             <Notes />
            <Tags />
-
-
-
         </Layout>
 </template>
 
@@ -29,9 +26,4 @@
     }
 </style>
 <style lang="scss" scoped>
-
-
-
-
-
 </style>
