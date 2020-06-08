@@ -11,19 +11,15 @@
 
 <script lang="ts">
     import Vue from 'vue'
-    import {Component, Prop} from "vue-property-decorator";
+    import {Component} from "vue-property-decorator";
     @Component
     export default class Types extends Vue {
-        @Prop(Number) xxx:number|undefined
         type='-'
         selectType(type:'-'|'+'){
             if(type!=='-'&&type!=='+'){
                 throw new Error('unknown type')
             }
             this.type=type
-        }
-        mounted() {
-            console.log(this.xxx)
         }
     }
     
