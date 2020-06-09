@@ -28,6 +28,7 @@
             } else {
                 this.selectedTags.push(tag)
             }
+            this.$emit('update:selected',this.selectedTags)
         }
 
         newTag() {

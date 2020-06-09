@@ -13,7 +13,7 @@
             <button @click="inputContent">7</button>
             <button @click="inputContent">8</button>
             <button @click="inputContent">9</button>
-            <button class="ok">OK</button>
+            <button class="ok" @click="ok">OK</button>
             <button class="zero" @click="inputContent">0</button>
             <button @click="inputContent">.</button>
         </div>
@@ -44,6 +44,10 @@
             }else {
                 this.output=this.output.slice(0,-1)
             }
+        }
+        ok(){
+            let output=parseFloat(this.output)
+            this.$emit('update:value',output)
         }
 
 
