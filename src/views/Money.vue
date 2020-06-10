@@ -1,6 +1,6 @@
 <template>
         <Layout class-prefix="layout">
-            {{record}}
+            {{recordList}}
             <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
             <Types :value.sync="record.types" />
             <Notes @update:value="onUpdateNotes"/>
@@ -23,6 +23,7 @@
         types:'-'|'+'
         notes:string
         amount:number
+        createdAt?:Date
     }
     @Component({
         components: {NumberPad, Notes, Types, Tags}
@@ -32,7 +33,7 @@
         record:Record={
             tags:[],types:'-',notes:'',amount:0
         }
-        recordList:Record[]=[]
+        recordList:Record[]=JSON.parse(window.localStorage.getItem('recordList') || '[]')
         onUpdateTags(tags:string[]){
            this.record.tags=tags
         }
@@ -44,7 +45,8 @@
             this.record.amount=value
         }
         saveRecord(){
-            const deepClone=JSON.parse(JSON.stringify(this.record))  // must deep clone
+            const deepClone:Record=JSON.parse(JSON.stringify(this.record))  // must deep clone
+            deepClone.createdAt=new Date()
             this.recordList.push(deepClone)
             console.log(this.recordList)
         }
