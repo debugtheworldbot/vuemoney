@@ -48,6 +48,7 @@
         ok(){
             let output=parseFloat(this.output)
             this.$emit('update:value',output)
+            this.$emit('submit',output)
             alert('保存成功！')
             this.clearContent()
         }
