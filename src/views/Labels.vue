@@ -7,7 +7,7 @@
                 </li>
             </ol>
             <div class="btn">
-                <button>NEW</button>
+                <button @click="createTag">NEW</button>
             </div>
         </Layout>
     </div>
@@ -15,9 +15,20 @@
 
 <script lang="ts">
    import Vue from "vue";
-
+   import {Component} from "vue-property-decorator";
+   import {tagListModel} from "@/models/tagListModel";
+   tagListModel.fetch()
+   @Component
    export default class Labels extends Vue {
-       tags= ['吃喝玩乐', '服饰美容', '生活日用', '交通出行']
+       tags=tagListModel.data
+       createTag(){
+           const name = window.prompt('请输入标签名：')
+           if (name === '') {
+               window.alert('标签名不能为空')
+           } else if(name){
+               tagListModel.create(name)
+           }
+       }
     }
 </script>
 
