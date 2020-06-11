@@ -17,23 +17,18 @@
     import NumberPad from "@/views/Money/NumberPad.vue";
     import Component from "vue-class-component";
     import {Watch} from "vue-property-decorator";
+    import {model} from "@/views/model";
 
-    type Record={
-        tags:string[]
-        types:'-'|'+'
-        notes:string
-        amount:number
-        createdAt?:Date
-    }
+
     @Component({
         components: {NumberPad, Notes, Types, Tags}
     })
     export default class Money extends Vue{
         tags= ['吃喝玩乐', '服饰美容', '生活日用', '交通出行']
-        record:Record={
+        record:RecordItem={
             tags:[],types:'-',notes:'',amount:0
         }
-        recordList:Record[]=JSON.parse(window.localStorage.getItem('recordList') || '[]')
+        recordList=model.fetch()
         onUpdateTags(tags:string[]){
            this.record.tags=tags
         }
@@ -45,14 +40,14 @@
             this.record.amount=value
         }
         saveRecord(){
-            const deepClone:Record=JSON.parse(JSON.stringify(this.record))  // must deep clone
+            const deepClone=model.clone(this.record)
             deepClone.createdAt=new Date()
             this.recordList.push(deepClone)
             console.log(this.recordList)
         }
         @Watch('recordList')
         onRecordListChanged(){
-            window.localStorage.setItem('recordList',JSON.stringify(this.recordList))
+            model.save(this.recordList)
         }
     }
 </script>
