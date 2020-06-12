@@ -1,11 +1,11 @@
 <template>
     <div>
         <Layout>
-            <ol>
-                <li v-for="tag in tags" :key="tag.id" >
+            <div class="olDiv">
+                <router-link :to="`/labels/edit/${tag.id}`" v-for="tag in tags" :key="tag.id" class="li" >
                     <span>{{tag.name}}</span> <Icon name="right"/>
-                </li>
-            </ol>
+                </router-link>
+            </div>
             <div class="btn">
                 <button @click="createTag">NEW</button>
             </div>
@@ -34,11 +34,11 @@
 </script>
 
 <style lang="scss" scoped>
-    ol{
+    .olDiv{
         background: white;
         font-size: 16px;
         padding-left: 16px;
-        >li{
+        >.li{
             display: flex;
             justify-content: space-between;
             min-height: 44px;
