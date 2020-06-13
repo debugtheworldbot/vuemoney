@@ -6,7 +6,7 @@
             <span class="rightIcon"></span>
         </div>
         <div class="formBar">
-            <FormItem field-name="标签名" placeholder="修改" />
+            <FormItem field-name="标签名" placeholder="修改" :value="tag.name" />
         </div>
         <div class="btnBar">
             <Button>确定</Button>
@@ -25,13 +25,14 @@
         components: {Button, FormItem}
     })
     export default class EditLabel extends Vue {
+        tag?:{id:string,name:string}=undefined
         created(){
             const id=this.$route.params.id
             tagListModel.fetch()
             const tags=tagListModel.data
             const tag=tags.filter(tag=>tag.id===id)[0]
-            if(tag){
-                console.log(tag)
+            if(tag) {
+                this.tag=tag
             }else {
                 this.$router.replace('/404')
             }
