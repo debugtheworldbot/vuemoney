@@ -4,7 +4,8 @@
             <Icon name="left"/>
             <span>编辑标签</span>
         </div>
-        <Notes field-name="edit" placeholder="修改" />
+        <FormItem field-name="edit" placeholder="修改" />
+        <Button>删除标签</Button>
     </Layout>
 </template>
 
@@ -12,9 +13,10 @@
     import Vue from 'vue'
     import {Component} from 'vue-property-decorator'
     import {tagListModel} from "@/models/tagListModel";
-    import Notes from "@/views/Money/Notes.vue";
+    import FormItem from "@/views/Money/FormItem.vue";
+    import Button from "@/components/Button.vue";
     @Component({
-        components: {Notes}
+        components: {Button, FormItem}
     })
     export default class EditLabel extends Vue {
         created(){
