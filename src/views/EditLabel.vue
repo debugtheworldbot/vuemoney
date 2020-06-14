@@ -57,7 +57,7 @@
             console.log(111)
         }
         goBack(){
-            this.$router.back()
+            this.$router.replace('/labels')
         }
 
     }

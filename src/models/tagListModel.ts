@@ -1,3 +1,5 @@
+import {createId} from "@/lib/createId";
+
 const localStorageKeyName='tagList'
 type Tag={
     id:string
@@ -25,7 +27,8 @@ const tagListModel:TagListModel=  {
             if (names.indexOf(name!) >= 0) {
                 window.alert('标签名已存在')
             }else if(name){
-                this.data.push({id:name,name:name})
+                const id=createId().toString()
+                this.data.push({id:id,name:name})
                 this.save()
             }
         return name
@@ -40,8 +43,6 @@ const tagListModel:TagListModel=  {
             }else {
                 const tag=tagListModel.data.filter(item=>item.id===id)[0]
                 tag.name=name
-                tag.id=name
-                console.log(tag.id)
                 this.save()
                 return  'success'
             }
