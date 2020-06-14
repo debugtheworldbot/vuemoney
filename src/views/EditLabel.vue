@@ -1,16 +1,17 @@
 <template>
     <Layout>
         <div class="navBar">
-            <Icon class="leftIcon" name="left"/>
+            <Icon class="leftIcon" name="left" @click.native="goBack"/>
             <span class="title">编辑标签</span>
             <span class="rightIcon"></span>
         </div>
         <div class="formBar">
-            <FormItem field-name="标签名" placeholder="修改" :value="tag.name" />
+            <FormItem field-name="标签名" placeholder="修改" :value="tag.name"
+            @update:value="updateTag"/>
         </div>
         <div class="btnBar">
-            <Button>确定</Button>
-            <Button class="btn">删除</Button>
+            <Button @click="confirm">确定</Button>
+            <Button class="btn" @click="remove">删除</Button>
         </div>
     </Layout>
 </template>
@@ -37,6 +38,28 @@
                 this.$router.replace('/404')
             }
         }
+        updateTag(name:string){
+            if(this.tag){
+                tagListModel.update(this.tag.id,name)
+
+            }else{
+                return
+            }
+        }
+        remove(){
+            if(this.tag){
+            tagListModel.remove(this.tag.id)
+            alert('删除成功')
+            this.goBack()
+            }
+        }
+        confirm(){
+            console.log(111)
+        }
+        goBack(){
+            this.$router.back()
+        }
+
     }
 </script>
 

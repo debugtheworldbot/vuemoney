@@ -8,7 +8,6 @@
 
     @Component
     export default class Button extends Vue {
-        name: ""
     }
 </script>
 
