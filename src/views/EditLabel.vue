@@ -34,6 +34,7 @@
             const tag=tags.filter(tag=>tag.id===id)[0]
             if(tag) {
                 this.tag=tag
+                console.log(tag)
             }else {
                 this.$router.replace('/404')
             }
