@@ -19,7 +19,6 @@
     import Component from "vue-class-component";
     import {Watch} from "vue-property-decorator";
     import {recordListModel} from "@/models/recordListModel";
-    import {tagListModel} from "@/models/tagListModel";
     import FormItem from "@/views/Money/FormItem.vue";
 
     @Component({
@@ -27,8 +26,7 @@
     })
     export default class Money extends Vue{
         recordList=recordListModel.fetch()
-        tagList=tagListModel.fetch()
-        tags= this.tagList
+        tags= window.tagList
         record:RecordItem={
             tags:[],types:'-',notes:'',amount:0
         }
