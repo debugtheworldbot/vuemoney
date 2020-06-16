@@ -10,7 +10,6 @@
             @update:value="updateTag"/>
         </div>
         <div class="btnBar">
-            <Button @click="confirm">确定</Button>
             <Button class="btn" @click="remove">删除</Button>
         </div>
     </Layout>
@@ -34,7 +33,6 @@
             const tag=tags.filter(tag=>tag.id===id)[0]
             if(tag) {
                 this.tag=tag
-                console.log(tag)
             }else {
                 this.$router.replace('/404')
             }
@@ -42,7 +40,6 @@
         updateTag(name:string){
             if(this.tag){
                 tagListModel.update(this.tag.id,name)
-
             }else{
                 return
             }
@@ -53,9 +50,6 @@
             alert('删除成功')
             this.goBack()
             }
-        }
-        confirm(){
-            console.log(111)
         }
         goBack(){
             this.$router.replace('/labels')
