@@ -14,6 +14,14 @@ Vue.component('Layout',Layout)
 Vue.component('Icon',Icon)
 
 window.tagList=tagListModel.fetch()
+window.createTag=(name:string)=>{
+  if (name === '') {
+    window.alert('标签名不能为空')
+  } else if(name){
+    tagListModel.create(name)
+  }
+}
+
 new Vue({
   router,
   store,
