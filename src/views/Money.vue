@@ -44,10 +44,7 @@
             this.record.amount=value
         }
         saveRecord(){
-            const deepClone=recordListModel.clone(this.record)
-            deepClone.createdAt=new Date()
-            this.recordList.push(deepClone)
-            console.log(this.recordList)
+            recordListModel.create(this.record)
         }
         @Watch('recordList')
         onRecordListChanged(){

@@ -5,6 +5,11 @@ const recordListModel=  {
         this.data=JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]') as RecordItem[]
         return this.data
     },
+    create(record:RecordItem){
+        const deepClone=recordListModel.clone(record)
+        deepClone.createdAt=new Date()
+        this.data.push(deepClone)
+    },
     save(){
         return  window.localStorage.setItem(localStorageKeyName,JSON.stringify(this.data))
     },
