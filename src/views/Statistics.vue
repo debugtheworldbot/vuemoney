@@ -36,4 +36,7 @@
             }
         }
     }
+    ::v-deep li.interval-item{
+        height: 48px;
+    }
 </style>
