@@ -1,39 +1,39 @@
 <template>
     <div>
-        <ul class="types">
-            <li :class="value ==='-' && 'selected'"
-            @click="selectType('-')">支出</li>
-            <li :class="value ==='+' && 'selected'"
-            @click="selectType('+')">收入</li>
+        <ul class="tabs">
+            <li v-for="tab in dataSource" :key="tab.value"
+            @click="select(tab)"
+            :class="{selected: tab.value===value}">{{tab.text}}</li>
         </ul>
     </div>
+    
 </template>
 
 <script lang="ts">
     import Vue from 'vue'
-    import {Component, Prop} from "vue-property-decorator";
-
+    import {Component, Prop} from 'vue-property-decorator'
+    type dataSourceItem= {text:string,value:string}
 
     @Component
-    export default class Types extends Vue {
-       @Prop() readonly value!:'-'|'+'
-        selectType(type:'-'|'+'){
-            if(type!=='-'&&type!=='+'){
-                throw new Error('unknown type')
-            }
-            this.$emit('update:value',type)
+    export default class Tabs extends Vue {
+        @Prop({required:true,type:Array})
+        dataSource!:dataSourceItem[]
+        @Prop(String)
+        readonly value!:string
+        @Prop(String)
+        clearPrefix?:string
+        select(tab:dataSourceItem){
+            this.$emit('update:value',tab.value)
         }
     }
-    
 </script>
 
 <style lang="scss" scoped>
-    .types {
+    .tabs {
         background: #c4c4c4;
         display: flex;
         text-align: center;
         font-size: 24px;
-
         > li {
             width: 50%;
             height: 64px;
@@ -41,7 +41,6 @@
             justify-content: center;
             align-items: center;
             position: relative;
-
             &.selected::after {
                 content: '';
                 position: absolute;

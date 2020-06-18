@@ -5,7 +5,7 @@
         </div>
         <ul class="current">
             <li v-for="tag in tags" :key="tag.id" @click="toggle(tag.name)"
-            :class="{selected:selectedTags.indexOf(tag.name)>=0}">
+                :class="{selected:selectedTags.indexOf(tag.name)>=0}">
                 {{tag.name}}
             </li>
         </ul>
@@ -17,12 +17,14 @@
     import Vue from 'vue'
     import {Component, Prop} from "vue-property-decorator";
     import {tagListModel} from "@/models/tagListModel";
+
     tagListModel.fetch()
     @Component
     export default class Tags extends Vue {
         @Prop() readonly dataSource: string[] | undefined
         selectedTags: string[] = []
-        tags=tagListModel.data
+        tags = tagListModel.data
+
         toggle(tag: string) {
             const index = this.selectedTags.indexOf(tag)
             if (index >= 0) {
@@ -30,14 +32,14 @@
             } else {
                 this.selectedTags.push(tag)
             }
-            this.$emit('update:selected',this.selectedTags)
+            this.$emit('update:selected', this.selectedTags)
         }
 
         newTag() {
             const name = window.prompt('请输入标签名：')
             if (name === '') {
                 window.alert('标签名不能为空')
-            } else if(name){
+            } else if (name) {
                 tagListModel.create(name)
             }
         }
