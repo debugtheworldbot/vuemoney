@@ -3,10 +3,9 @@
         <ul class="tabs">
             <li v-for="tab in dataSource" :key="tab.value"
             @click="select(tab)"
-            :class="{selected: tab.value===value}">{{tab.text}}</li>
+            :class="{selected: tab.value===value,[clearPrefix+'-item']: clearPrefix}">{{tab.text}}</li>
         </ul>
     </div>
-    
 </template>
 
 <script lang="ts">

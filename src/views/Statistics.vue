@@ -1,8 +1,10 @@
 <template>
     <div>
         <Layout>
-            <Tabs clear-prefix="types" :data-source="arr2" :value.sync="yyy"/>
-            <Tabs clear-prefix="tabs" :data-source="arr1" :value.sync="zzz"/>
+            {{type}}
+            {{interval}}
+            <Tabs clear-prefix="type" :data-source="typeList" :value.sync="type"/>
+            <Tabs clear-prefix="interval" :data-source="intervalList" :value.sync="interval"/>
         </Layout>
 
     </div>
@@ -17,15 +19,15 @@
         components:{Tabs, Types},
     })
     export default class Statistics extends Vue{
-        arr1=[{text:'day',value:'day'},{text:'week',value:'week'},{text:'mouth',value:'mouth'}]
-        arr2=[{text:'支出',value:'-'},{text:'收入',value:'+'}]
-        yyy='-'
-        zzz='day'
+        intervalList=[{text:'day',value:'day'},{text:'week',value:'week'},{text:'mouth',value:'mouth'}]
+        typeList=[{text:'支出',value:'-'},{text:'收入',value:'+'}]
+        type='-'
+        interval='day'
     }
 </script>
 
 <style lang="scss" scoped>
-    ::v-deep li{
+    ::v-deep .type-item{
         background: #ffffff;
         &.selected{
             background: #c4c4c4;
